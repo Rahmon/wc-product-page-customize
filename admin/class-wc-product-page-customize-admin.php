@@ -100,4 +100,24 @@ class Wc_Product_Page_Customize_Admin {
 
 	}
 
+	/**
+	 * Add an option page
+	 *
+	 * @since 1.0.0
+	 */
+	 public function register_settings_page() {
+		 add_submenu_page( 'edit.php?post_type=product', __( 'Product Page Customize', 'wc-product-page-customize' ), __( 'Product Page Customize', 'wc-product-page-customize' ), 'manage_options', 'wc-product-page-customize', array( $this, 'display_settings_page' ) );
+	 }
+
+	 /**
+ * Display the settings page content for the page we have created.
+ *
+ * @since    1.0.0
+ */
+	public function display_settings_page() {
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/wc-product-page-customize-admin-display.php';
+
+	}
+
 }
