@@ -50,6 +50,15 @@ class Wc_Product_Page_Customize_Admin {
 	private $text_domain;
 
 	/**
+	 * The options name of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $text_domain    The text-domain of this plugin.
+	 */
+	private $option_name = 'wc_product_page_customize_settings';
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -130,6 +139,50 @@ class Wc_Product_Page_Customize_Admin {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/wc-product-page-customize-admin-display.php';
 
+	}
+
+	/**
+	 * Add an option page
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_settings() {
+		add_settings_section(
+			$this->option_name . '_general',
+			__( 'General', $this->text_domain ),
+			array( $this, $this->option_name . '_general' ),
+			$this->plugin_name
+		);
+
+		add_settings_field(
+			$this->option_name . '_title',
+			__( 'Title', $this->text_domain ),
+			array( $this, $this->option_name . '_title' ),
+			$this->plugin_name,
+			$this->option_name . '_general',
+			array(
+				'label_for' => $this->option_name . '_title'
+			)
+		);
+
+		register_setting( $this->plugin_name, $this->option_name . '_title', 'strval' );
+	}
+	/**
+	 * Render the text for the general section
+	 *
+	 * @since  1.0.0
+	 */
+	public function wc_product_page_customize_settings_general() {
+		echo '<p>' . __( 'Please change the settings accordingly.', $this->text_domain ) . '</p>';
+	}
+
+	/**
+	 * Render the treshold day input for this plugin
+	 *
+	 * @since  1.0.0
+	 */
+	public function wc_product_page_customize_settings_title() {
+		echo '<input type="text" name="' . $this->option_name . '_title' . '" id="' . $this->option_name . '_title' . '">';
 	}
 
 }
