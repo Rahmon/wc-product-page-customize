@@ -58,6 +58,15 @@ class Wc_Product_Page_Customize {
 	protected $version;
 
 	/**
+	 * The text-domain of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $text_domain    The text-domain of the plugin.
+	 */
+	protected $text_domain;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -70,6 +79,7 @@ class Wc_Product_Page_Customize {
 
 		$this->plugin_name = 'wc-product-page-customize';
 		$this->version = '1.0.0';
+		$this->text_domain = 'wc-product-page-customize';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -149,7 +159,7 @@ class Wc_Product_Page_Customize {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wc_Product_Page_Customize_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Wc_Product_Page_Customize_Admin( $this->get_plugin_name(), $this->get_version(), $this->get_text_domain() );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_settings_page' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -166,7 +176,7 @@ class Wc_Product_Page_Customize {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wc_Product_Page_Customize_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Wc_Product_Page_Customize_Public( $this->get_plugin_name(), $this->get_version(), $this->get_text_domain() );
 
 		$this->loader->add_action( 'woocommerce_before_single_product', $plugin_public, 'customize_product_page' );
 
@@ -211,6 +221,16 @@ class Wc_Product_Page_Customize {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Retrieve the text-domain of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The text-domain of the plugin.
+	 */
+	public function get_text_domain() {
+		return $this->text_domain;
 	}
 
 }

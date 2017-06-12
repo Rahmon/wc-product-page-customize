@@ -46,11 +46,13 @@ class Wc_Product_Page_Customize_Public {
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
+	 * @param      string    $text_domain    The text-domain of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $text_domain ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->text_domain = $text_domain;
 
 	}
 
@@ -113,16 +115,16 @@ class Wc_Product_Page_Customize_Public {
 			 ),
 		 );
 
-		 foreach ( $itens as $item ) {
-			 $name = $item['name'];
-			 $default_priority = $item['default_priority'];
-			 $new_priority = $item['new_priority'];
+		foreach ( $itens as $item ) {
+			$name = $item['name'];
+			$default_priority = $item['default_priority'];
+			$new_priority = $item['new_priority'];
 
-			 if ( $default_priority !== $new_priority ) {
-				 remove_action( 'woocommerce_single_product_summary', $name, $default_priority );
-				 add_action( 'woocommerce_single_product_summary', $name, $new_priority );
-			 }
-		 }
+			if ( $default_priority !== $new_priority ) {
+				remove_action( 'woocommerce_single_product_summary', $name, $default_priority );
+				add_action( 'woocommerce_single_product_summary', $name, $new_priority );
+			}
+		}
 	}
 
 }

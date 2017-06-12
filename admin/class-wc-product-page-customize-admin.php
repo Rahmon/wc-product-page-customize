@@ -41,16 +41,26 @@ class Wc_Product_Page_Customize_Admin {
 	private $version;
 
 	/**
+	 * The text-domain of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $text_domain    The text-domain of this plugin.
+	 */
+	private $text_domain;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $text_domain ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->text_domain = $text_domain;
 
 	}
 
@@ -105,9 +115,11 @@ class Wc_Product_Page_Customize_Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	 public function register_settings_page() {
-		 add_submenu_page( 'edit.php?post_type=product', __( 'Product Page Customize', 'wc-product-page-customize' ), __( 'Product Page Customize', 'wc-product-page-customize' ), 'manage_options', 'wc-product-page-customize', array( $this, 'display_settings_page' ) );
-	 }
+	public function register_settings_page() {
+
+		 add_submenu_page( 'edit.php?post_type=product', __( 'Product Page Customize', $this->text_domain ), __( 'Product Page Customize', $this->text_domain ), 'manage_options', 'wc-product-page-customize', array( $this, 'display_settings_page' ) );
+
+	}
 
 	 /**
  * Display the settings page content for the page we have created.
