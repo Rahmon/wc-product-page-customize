@@ -165,7 +165,20 @@ class Wc_Product_Page_Customize_Admin {
 			)
 		);
 
-		register_setting( $this->plugin_name, $this->option_name . '_title', 'strval' );
+		register_setting( $this->plugin_name, $this->option_name . '_title', 'intval' );
+
+		add_settings_field(
+			$this->option_name . '_rating',
+			__( 'Rating', $this->text_domain ),
+			array( $this, $this->option_name . '_rating' ),
+			$this->plugin_name,
+			$this->option_name . '_general',
+			array(
+				'label_for' => $this->option_name . '_rating'
+			)
+		);
+
+		register_setting( $this->plugin_name, $this->option_name . '_rating', 'intval' );
 	}
 	/**
 	 * Render the text for the general section
@@ -183,6 +196,11 @@ class Wc_Product_Page_Customize_Admin {
 	 */
 	public function wc_product_page_customize_settings_title() {
 		echo '<input type="text" name="' . $this->option_name . '_title' . '" id="' . $this->option_name . '_title' . '">';
+
+	}
+
+	public function wc_product_page_customize_settings_rating() {
+		echo '<input type="text" name="' . $this->option_name . '_rating' . '" id="' . $this->option_name . '_rating' . '">';
 	}
 
 }
