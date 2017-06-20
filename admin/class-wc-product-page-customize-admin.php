@@ -154,31 +154,36 @@ class Wc_Product_Page_Customize_Admin {
 			$this->plugin_name
 		);
 
-		add_settings_field(
-			$this->option_name . '_title',
-			__( 'Title', $this->text_domain ),
-			array( $this, $this->option_name . '_title' ),
-			$this->plugin_name,
-			$this->option_name . '_general',
+		$fields = array(
 			array(
-				'label_for' => $this->option_name . '_title'
-			)
+				'name' => 'title',
+				'label' => 'Title',
+				'type' => 'intval',
+			),
+			array(
+				'name' => 'rating',
+				'label' => 'Rating',
+				'type' => 'intval',
+			),
 		);
 
-		register_setting( $this->plugin_name, $this->option_name . '_title', 'intval' );
+		foreach ( $fields as $field ) {
+			add_settings_field(
+				$this->option_name . '_' . $field['name'],
+				__( $field['label'], $this->text_domain ),
+				array(
+					$this,
+					$this->option_name . '_' . $field['name'],
+				),
+				$this->plugin_name,
+				$this->option_name . '_general',
+				array(
+					'label_for' => $this->option_name . '_' . $field['name'],
+				)
+			);
 
-		add_settings_field(
-			$this->option_name . '_rating',
-			__( 'Rating', $this->text_domain ),
-			array( $this, $this->option_name . '_rating' ),
-			$this->plugin_name,
-			$this->option_name . '_general',
-			array(
-				'label_for' => $this->option_name . '_rating'
-			)
-		);
-
-		register_setting( $this->plugin_name, $this->option_name . '_rating', 'intval' );
+			register_setting( $this->plugin_name, $this->option_name . '_' . $field['name'], $field['type'] );
+		}
 	}
 	/**
 	 * Render the text for the general section
