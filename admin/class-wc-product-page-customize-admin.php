@@ -165,6 +165,31 @@ class Wc_Product_Page_Customize_Admin {
 				'label' => 'Rating',
 				'type' => 'intval',
 			),
+			array(
+				'name' => 'price',
+				'label' => 'Price',
+				'type' => 'intval',
+			),
+			array(
+				'name' => 'excerpt',
+				'label' => 'Excerpt',
+				'type' => 'intval',
+			),
+			array(
+				'name' => 'add_to_cart',
+				'label' => 'Add to Cart',
+				'type' => 'intval',
+			),
+			array(
+				'name' => 'meta',
+				'label' => 'Meta',
+				'type' => 'intval',
+			),
+			array(
+				'name' => 'sharing',
+				'label' => 'Sharing',
+				'type' => 'intval',
+			),
 		);
 
 		foreach ( $fields as $field ) {
@@ -173,12 +198,13 @@ class Wc_Product_Page_Customize_Admin {
 				__( $field['label'], $this->text_domain ),
 				array(
 					$this,
-					$this->option_name . '_' . $field['name'],
+					'render_setting',
 				),
 				$this->plugin_name,
 				$this->option_name . '_general',
 				array(
 					'label_for' => $this->option_name . '_' . $field['name'],
+					'context' => $field['name'],
 				)
 			);
 
@@ -199,13 +225,9 @@ class Wc_Product_Page_Customize_Admin {
 	 *
 	 * @since  1.0.0
 	 */
-	public function wc_product_page_customize_settings_title() {
-		echo '<input type="text" name="' . $this->option_name . '_title' . '" id="' . $this->option_name . '_title' . '">';
 
-	}
-
-	public function wc_product_page_customize_settings_rating() {
-		echo '<input type="text" name="' . $this->option_name . '_rating' . '" id="' . $this->option_name . '_rating' . '">';
+	public function render_setting( $args ) {
+		echo '<input type="text" name="' . $this->option_name . '_' . $args[ 'context' ] . '" id="' . $this->option_name . '_' . $args[ 'context' ] . '">';
 	}
 
 }
