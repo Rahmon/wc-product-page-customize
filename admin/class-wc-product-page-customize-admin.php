@@ -227,7 +227,7 @@ class Wc_Product_Page_Customize_Admin {
 	 */
 
 	public function render_setting( $args ) {
-		echo '<input type="text" name="' . $this->option_name . '_' . $args[ 'context' ] . '" id="' . $this->option_name . '_' . $args[ 'context' ] . '">';
+		echo '<input type="text" name="' . $this->option_name . '_' . $args['context'] . '" id="' . $this->option_name . '_' . $args['context'] . '" value="' . get_option( $this->option_name . '_' . $args['context'] ) . '">';
 	}
 
 }

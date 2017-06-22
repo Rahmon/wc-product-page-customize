@@ -26,47 +26,6 @@
   */
 ?>
 
-<h1>WC Product Page Customize</h1>
-<form>
-  <div>
-    <span>Title</span>
-    <input type="number" value="5"/>
-  </div>
-
-  <div>
-    <span>Rating</span>
-    <input type="number" value="10"/>
-  </div>
-
-  <div>
-    <span>Price</span>
-    <input type="number" value="10"/>
-  </div>
-
-  <div>
-    <span>Excerpt</span>
-    <input type="number" value="20"/>
-  </div>
-
-  <div>
-    <span>Add to Cart</span>
-    <input type="number" value="30"/>
-  </div>
-
-  <div>
-    <span>Meta</span>
-    <input type="number" value="40"/>
-  </div>
-
-  <div>
-    <span>Sharing</span>
-    <input type="number" value="50"/>
-  </div>
-  <div>
-    <?php submit_button( 'Save Settings' ) ?>
-  </div>
-</form>
-
 <div class="wrap">
 	    <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 	    <form action="options.php" method="post">
