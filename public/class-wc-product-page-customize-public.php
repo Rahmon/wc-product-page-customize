@@ -69,13 +69,13 @@ class Wc_Product_Page_Customize_Public {
 		 * @hooked woocommerce_template_single_sharing - 50
 		 * @hooked WC_Structured_Data::generate_product_data() - 60
 		 */
-		 $new_title_priority = 50;
-		 $new_rating_priority = 32;
-		 $new_price_priority = 10;
-		 $new_excerpt_priority = 20;
-		 $new_single_add_to_cart_priority = 30;
-		 $new_meta_priority = 40;
-		 $new_sharing_priority = 50;
+		 $new_title_priority = get_option( 'wc_product_page_customize_settings_title' );
+		 $new_rating_priority = get_option( 'wc_product_page_customize_settings_rating' );
+		 $new_price_priority = get_option( 'wc_product_page_customize_settings_price' );
+		 $new_excerpt_priority = get_option( 'wc_product_page_customize_settings_excerpt' );
+		 $new_single_add_to_cart_priority = get_option( 'wc_product_page_customize_settings_add_to_cart' );
+		 $new_meta_priority = get_option( 'wc_product_page_customize_settings_meta' );
+		 $new_sharing_priority = get_option( 'wc_product_page_customize_settings_sharing' );
 
 		 $itens = array(
 			 array(
@@ -91,27 +91,27 @@ class Wc_Product_Page_Customize_Public {
 			 array(
 				 'name' => 'woocommerce_template_single_price',
 				 'default_priority' => 10,
-				 'new_priority' => $new_rating_priority,
+				 'new_priority' => $new_price_priority,
 			 ),
 			 array(
 				 'name' => 'woocommerce_template_single_excerpt',
 				 'default_priority' => 20,
-				 'new_priority' => $new_rating_priority,
+				 'new_priority' => $new_excerpt_priority,
 			 ),
 			 array(
 				 'name' => 'woocommerce_template_single_add_to_cart',
 				 'default_priority' => 30,
-				 'new_priority' => $new_rating_priority,
+				 'new_priority' => $new_single_add_to_cart_priority,
 			 ),
 			 array(
 				 'name' => 'woocommerce_template_single_meta',
 				 'default_priority' => 40,
-				 'new_priority' => $new_rating_priority,
+				 'new_priority' => $new_meta_priority,
 			 ),
 			 array(
 				 'name' => 'woocommerce_template_single_sharing',
 				 'default_priority' => 50,
-				 'new_priority' => $new_rating_priority,
+				 'new_priority' => $new_sharing_priority,
 			 ),
 		 );
 
